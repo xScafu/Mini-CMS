@@ -1,0 +1,44 @@
+@use "sass:math";
+
+@function parse-int($value) {
+  @return math.div($value, ($value * 0 + 1));
+}
+
+@function get-em($value, $pixels: 16) {
+  $v: parse-int($value);
+  @return math.div($v, $pixels) * 1em;
+}
+
+@function get-rem($value, $pixels: 16) {
+  $v: parse-int($value);
+  @return math.div($v, $pixels) * 1rem;
+}
+
+@function get-clamp($min-rem, $max-rem, $min-viewport, $max-viewport, $unit: "vw") {
+  $min-value: $min-rem * 16;
+  $max-value: $max-rem * 16;
+
+  $result: get-clamp-px($min-value, $max-value, $min-viewport, $max-viewport, $unit);
+
+  @return $result;
+}
+
+@function get-clamp-px($min-value, $max-value, $min-viewport, $max-viewport, $unit: "vw") {
+
+  $variable: math.div(round((math.div(($max-value - $min-value), ($max-viewport - $min-viewport))) * 10000), 10000);
+  $constant: math.div(round(($max-value - $max-viewport * $variable) * 10000), 10000);
+
+  $min-to-rem: get-rem($min-value);
+  $max-to-rem: get-rem($max-value);
+  $variable: $variable*100;
+
+  @return clamp($min-to-rem, get-rem($constant) + #{$variable}#{$unit}, $max-to-rem);
+}
+
+@function get-percent($current_value, $ref_value) {
+  @return math.div($current_value, $ref_value) * 100%;
+}
+
+@function get-perc($current_value, $ref_value) {
+  @return get-percent($current_value, $ref_value);
+}

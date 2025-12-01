@@ -1,0 +1,8 @@
+@use "../inc/functions" as *;
+
+@use "./dashboard";
+
+.section-title {
+  font-size: get-rem(32);
+  padding: get-rem(32) 0;
+}

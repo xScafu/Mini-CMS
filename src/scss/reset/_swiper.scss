@@ -1,0 +1,5 @@
+// example: overwrite swiper variables
+:root {
+  --swiper-navigation-color: var(--clr-primary);
+  --swiper-pagination-color: var(--clr-primary);
+}

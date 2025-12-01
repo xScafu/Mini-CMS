@@ -1,0 +1,15 @@
+@use "../inc/functions" as *;
+
+.card {
+  background-image: linear-gradient(180deg, #ffffff5b, #00000002);
+  border-radius: 12px;
+  width: 100%;
+  padding: 1rem;
+
+  .card-header {
+    padding: 1rem;
+    .card-title {
+      font-size: get-rem(24);
+    }
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "prodotti": [
+    {
+      "tipo": "Generico",
+      "nome": "Carta",
+      "prezzo": 1.5,
+      "quantita": 100,
+      "costo": 0.8
+    },
+    {
+      "tipo": "Alimentare",
+      "nome": "Pane Fresco",
+      "prezzo": 3.0,
+      "quantita": 50,
+      "costo": 1.5,
+      "dataScadenza": "2026-03-01"
+    },
+    {
+      "tipo": "Elettronica",
+      "nome": "Smartphone",
+      "prezzo": 500.0,
+      "quantita": 10,
+      "costo": 350.0,
+      "garanzia": "2027-11-28"
+    },
+    {
+      "tipo": "Elettronica",
+      "nome": "Laptop",
+      "prezzo": 300,
+      "quantita": 20,
+      "costo": 150,
+      "garanzia": "2027-11-28"
+    },
+    {
+      "tipo": "Alimentare",
+      "nome": "Mozzarella",
+      "prezzo": 4,
+      "quantita": 50,
+      "costo": 2,
+      "dataScadenza": "2026-01-01"
+    }
+  ]
+}

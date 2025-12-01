@@ -1,0 +1,315 @@
+@use "../inc/functions" as *;
+
+:root {
+  --gap-x: 0.5rem;
+  --gap-y: 1.25rem;
+}
+
+// FLEX-GRID LAYOUT
+.flex-grid {
+  //inizializzo la flex-grid nel contenitore genitore
+  position: relative;
+  > .row {
+    //il layout funziona con row per formare le righe, da applicare al parent degli elementi
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    &:last-child {
+      margin-bottom: calc(var(--gap-x) * -1);
+    }
+    @media screen and (min-width: get-em(767)) {
+      //passa dalla colonna singola alle righe
+      flex-direction: row;
+      //il margine viene sfruttato per compensare il padding di col e di row.
+      margin-left: calc((var(--gap-y) * -1) / 2);
+      margin-right: calc((var(--gap-y) * -1) / 2);
+    }
+    > .col,
+    > .col-1,
+    > .col-2,
+    > .col-3,
+    > .col-4,
+    > .col-5,
+    > .col-6,
+    > .col-7,
+    > .col-8,
+    > .col-9,
+    > .col-10,
+    > .col-11 {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      padding-bottom: var(--gap-x);
+
+      @media screen and (min-width: get-em(767)) {
+        padding-left: calc(var(--gap-y) / 2);
+        padding-right: calc(var(--gap-y) / 2);
+      }
+    }
+
+    @media screen and (min-width: get-em(559)) {
+      > .col-1,
+      > .col-2,
+      > .col-3,
+      > .col-4 {
+        width: calc(100% * 4 / 12);
+      }
+      > .col-5,
+      > .col-6,
+      > .col-7,
+      > .col-8 {
+        width: calc(100% * 6 / 12);
+      }
+      > .col-9,
+      > .col-10,
+      > .col-11 {
+        width: 100%;
+      }
+      > .offset-col-1 {
+        margin-left: calc((100% * 1 / 12));
+      }
+      > .offset-col-2 {
+        margin-left: calc((100% * 2 / 12));
+      }
+      > .offset-col-3 {
+        margin-left: calc((100% * 3 / 12));
+      }
+      > .offset-col-4 {
+        margin-left: calc((100% * 4 / 12));
+      }
+      > .offset-col-5 {
+        margin-left: calc((100% * 5 / 12));
+      }
+      > .offset-col-6 {
+        margin-left: calc((100% * 6 / 12));
+      }
+      > .offset-col-7 {
+        margin-left: calc((100% * 7 / 12));
+      }
+      > .offset-col-8 {
+        margin-left: calc((100% * 8 / 12));
+      }
+      > .offset-col-9 {
+        margin-left: calc((100% * 9 / 12));
+      }
+      > .offset-col-10 {
+        margin-left: calc((100% * 10 / 12));
+      }
+      > .offset-col-11 {
+        margin-left: calc((100% * 11 / 12));
+      }
+    }
+
+    @media screen and (min-width: get-em(767)) {
+      > .col-1 {
+        width: calc(100% * 1 / 12);
+      }
+      > .col-2 {
+        width: calc(100% * 2 / 12);
+      }
+      > .col-3 {
+        width: calc(100% * 3 / 12);
+      }
+      > .col-4 {
+        width: calc(100% * 4 / 12);
+      }
+      > .col-5 {
+        width: calc(100% * 5 / 12);
+      }
+      > .col-6 {
+        width: calc(100% * 6 / 12);
+      }
+      > .col-7 {
+        width: calc(100% * 7 / 12);
+      }
+      > .col-8 {
+        width: calc(100% * 8 / 12);
+      }
+      > .col-9 {
+        width: calc(100% * 9 / 12);
+      }
+      > .col-10 {
+        width: calc(100% * 10 / 12);
+      }
+      > .col-11 {
+        width: calc(100% * 11 / 12);
+      }
+    }
+  }
+}
+
+// GRID
+.grid {
+  position: relative;
+  //inizializzo la grid nel contenitore genitore
+  > .row {
+    column-gap: var(--gap-x);
+    row-gap: var(--gap-y);
+    padding-bottom: var(--gap-y);
+    &:last-child {
+      margin-bottom: calc(var(--gap-x) * -1);
+      padding-bottom: 0;
+    }
+    //divido il contenitore in righe composte da 12 colonne.
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+
+    > .col,
+    > .col-1,
+    > .col-2,
+    > .col-3,
+    > .col-4,
+    > .col-5,
+    > .col-6,
+    > .col-7,
+    > .col-8,
+    > .col-9,
+    > .col-10,
+    > .col-11 {
+      //ingombri di default degli elementi
+      grid-column-end: span 12;
+    }
+    @media screen and (min-width: get-em(767)) {
+      > .col-1,
+      > .col-2,
+      > .col-3,
+      > .col-4 {
+        grid-column-end: span 4;
+      }
+      > .col-5,
+      > .col-6,
+      > .col-7,
+      > .col-8 {
+        grid-column-end: span 6;
+      }
+      > .col-9,
+      > .col-10,
+      > .col-11 {
+        grid-column-end: span 12;
+      }
+
+      @media screen and (min-width: get-em(819)) {
+        > .col-1 {
+          grid-column-end: span 1;
+        }
+        > .col-2 {
+          grid-column-end: span 2;
+        }
+        > .col-3 {
+          grid-column-end: span 3;
+        }
+        > .col-4 {
+          grid-column-end: span 4;
+        }
+        > .col-5 {
+          grid-column-end: span 5;
+        }
+        > .col-6 {
+          grid-column-end: span 6;
+        }
+        > .col-7 {
+          grid-column-end: span 7;
+        }
+        > .col-8 {
+          grid-column-end: span 8;
+        }
+        > .col-9 {
+          grid-column-end: span 9;
+        }
+        > .col-10 {
+          grid-column-end: span 10;
+        }
+        > .col-11 {
+          grid-column-end: span 11;
+        }
+      }
+      // OFFSET COLUMN
+      > .offset-col-1 {
+        grid-column-start: calc(1 + 1);
+      }
+      > .offset-col-2 {
+        grid-column-start: calc(2 + 1);
+      }
+      > .offset-col-3 {
+        grid-column-start: calc(3 + 1);
+      }
+      > .offset-col-4 {
+        grid-column-start: calc(4 + 1);
+      }
+      > .offset-col-5 {
+        grid-column-start: calc(5 + 1);
+      }
+      > .offset-col-6 {
+        grid-column-start: calc(6 + 1);
+      }
+      > .offset-col-7 {
+        grid-column-start: calc(7 + 1);
+      }
+      > .offset-col-8 {
+        grid-column-start: calc(8 + 1);
+      }
+      > .offset-col-9 {
+        grid-column-start: calc(9 + 1);
+      }
+      > .offset-col-10 {
+        grid-column-start: calc(10 + 1);
+      }
+      > .offset-col-11 {
+        grid-column-start: calc(11 + 1);
+      }
+      // OFFSET ROW
+      > .offset-row-1 {
+        grid-row-start: 1;
+      }
+      > .offset-row-2 {
+        grid-row-start: 2;
+      }
+      > .offset-row-3 {
+        grid-row-start: 3;
+      }
+      > .offset-row-4 {
+        grid-row-start: 4;
+      }
+      > .offset-row-5 {
+        grid-row-start: 5;
+      }
+      > .offset-row-6 {
+        grid-row-start: 6;
+      }
+      > .offset-row-7 {
+        grid-row-start: 7;
+      }
+      > .offset-row-8 {
+        grid-row-start: 8;
+      }
+      > .offset-row-9 {
+        grid-row-start: 9;
+      }
+      > .offset-row-10 {
+        grid-row-start: 10;
+      }
+      > .offset-row-11 {
+        grid-row-start: 11;
+      }
+    }
+  }
+}
+
+// CLASSI DI SERVIZIO PER TEST LAYOUT
+
+.test-row {
+  background-color: rgb(142, 200, 250);
+}
+
+.test-col {
+  background-color: antiquewhite;
+  width: 100%;
+}
+
+.elements {
+  background-color: rgb(76, 123, 145);
+  border: solid 1px black;
+  font-size: 10rem;
+  text-align: center;
+  height: 100%;
+}

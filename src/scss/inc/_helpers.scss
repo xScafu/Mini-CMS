@@ -1,0 +1,8 @@
+@use "./functions" as *;
+@use "./mixins" as *;
+
+.hidden {
+  display: none;
+  visibility: hidden;
+  opacity: 0;
+}

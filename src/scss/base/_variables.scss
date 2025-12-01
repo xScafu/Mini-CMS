@@ -1,0 +1,17 @@
+@use "../inc/functions" as *;
+@use "../inc/mixins" as *;
+
+:root {
+  --background-gradient: radial-gradient(
+      farthest-corner circle at top left,
+      #ecffeb61 19%,
+      #00e4be00 35% 27%
+    ),
+    radial-gradient(
+      farthest-corner circle at bottom right,
+      #ffe3e0,
+      3%,
+      #fff0 42% 79%
+    ),
+    linear-gradient(to right, #f3f3f3, #f3f3f3);
+}

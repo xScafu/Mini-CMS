@@ -1,0 +1,61 @@
+<section>
+    <h2>INVENTARIO</h2>
+    <div class="js-inventario">
+    </div>
+  </section>
+  <section>
+    <h2>GESTIONE INVENTARIO</h2>
+    <p>Aggiungi un articolo all'inventario</p>
+    <form class="js-gestione-inventario">
+      <ul>
+        <li>
+          <label for="tipo">Tipo:</label>
+          <select class="js-select-tipo" name="tipo" placeholder="Tipo articolo">
+            <option value="generico">Generico</option>
+            <option value="alimentare">Alimentare</option>
+            <option value="elettronica">Elettronica</option>
+          </select>
+        </li>
+        <li>
+          <label for="nome">Articolo:</label>
+          <input type="text" name="nome" placeholder="Nome articolo">
+        </li>
+        <li>
+          <label for="prezzo">Prezzo in €:</label>
+          <input type="number" name="prezzo" placeholder="Prezzo articolo">
+        </li>
+        <li>
+          <label for="quantita">Quantità:</label>
+          <input type="number" name="quantita" placeholder="Quantità articolo">
+        </li>
+        <li>
+          <label for="costo">Costo in €:</label>
+          <input type="number" name="costo" placeholder="Costo articolo">
+        </li>
+        <li class="js-data-scadenza hidden">
+          <label for="scadenza">Data di scadenza:</label>
+          <input type="date" name="scadenza" placeholder="Data di scadenza">
+        </li>
+        <li class="js-garanzia hidden">
+          <label for="garanzia">Data di fine garanzia:</label>
+          <input type="date" name="garanzia" placeholder="Data di fine garanzia">
+        </li>
+      </ul>
+      <button class="js-btn-aggiungi" type="submit">Aggiungi</button>
+    </form>
+  </section>
+  <section>
+    <h2>VENDITA</h2>
+    <form class="js-form-vendita">
+      <label for="id">ID:</label>
+      <input type="number" name="id" class="js-input-id" placeholder="ID">
+      <br>
+      <label for="quantitaVendita">Quantita da vendere:</label>
+      <input type="number" name="quantitaVendita" class="js-input-quantita-vendita" placeholder="Scrivi un numero">
+      <button type="submit" class="js-btn-vendita-submit">Vendi</button>
+    </form>
+  </section>
+  <section>
+    <h2>GUADAGNO</h2>
+    <p>Guadagno totale: <span class="js-guadagno">0</span> €</p>
+  </section>
