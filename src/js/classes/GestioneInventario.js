@@ -177,6 +177,7 @@ function inserisciArticolo(e) {
 
   gestioneInventario.reset();
   verificaTipo();
+  aggiornaStatisticheUI();
 }
 
 function verificaTipo() {
@@ -203,6 +204,7 @@ function vendiArticolo(e) {
   inventario.vendiProdotto(id, quantita);
 
   aggiornaGuadagnoUI();
+  aggiornaStatisticheUI();
 }
 
 function aggiornaGuadagnoUI() {
@@ -227,7 +229,52 @@ async function caricaInventarioIniziale() {
       );
     });
     inventario.render(inventario.prodotti);
+    aggiornaStatisticheUI();
   } catch (error) {
     console.log(`ERRORE: ${error}`);
+  }
+}
+
+function aggiornaStatisticheUI() {
+  const prodottiArray = Object.values(inventario.prodotti);
+
+  //Numero di prodotto
+  const numeroProdotti = prodottiArray.length;
+  const printNumeroProdotti = document.querySelector(".js-numero-prodotti");
+  if (numeroProdotti) {
+    printNumeroProdotti.textContent = numeroProdotti;
+  }
+
+  //Quantita totale
+  const quantitaTotale = prodottiArray.reduce(
+    (accumulatore, prodottoCorrente) => {
+      return accumulatore + prodottoCorrente.quantita;
+    },
+    0
+  );
+
+  const printQuantitaTotale = document.querySelector(".js-quantita-totale");
+  if (printQuantitaTotale) {
+    printQuantitaTotale.textContent = quantitaTotale + " unità";
+  }
+
+  //Costo totale
+  const costoTotale = prodottiArray.reduce((accumulatore, prodottoCorrente) => {
+    return accumulatore + prodottoCorrente.costo * prodottoCorrente.quantita;
+  }, 0);
+
+  const printCostoTotale = document.querySelector(".js-costo-totale");
+  if (printCostoTotale) {
+    printCostoTotale.textContent = costoTotale + " €";
+  }
+
+  //numero tipi di prodotti
+  const tipiDiProdotti = prodottiArray.map((prodottoCorrente) => {
+    return prodottoCorrente.constructor.name;
+  });
+
+  const printTipiProdotti = document.querySelector(".js-numero-tipi-prodotti");
+  if (printTipiProdotti) {
+    printTipiProdotti.textContent = new Set(tipiDiProdotti).size;
   }
 }
