@@ -1,0 +1,13 @@
+@use "../inc/functions" as *;
+
+.dashboard {
+  .cards-riepilogative {
+    .card {
+      justify-content: flex-start;
+
+      .total-cost {
+        font-size: get-rem(32);
+      }
+    }
+  }
+}

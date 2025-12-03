@@ -12,6 +12,8 @@ import {
   NotebookTabs,
   Weight,
   BanknoteArrowDown,
+  CircleQuestionMark,
+  Search,
 } from "lucide";
 
 createIcons({
@@ -27,6 +29,8 @@ createIcons({
     NotebookTabs,
     Weight,
     BanknoteArrowDown,
+    CircleQuestionMark,
+    Search,
   },
   attrs: {
     class: "icon",

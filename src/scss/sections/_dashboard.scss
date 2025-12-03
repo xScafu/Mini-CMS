@@ -1,0 +1,6 @@
+@use "../inc/functions" as *;
+
+.section-title {
+  font-size: get-rem(32);
+  padding: 0rem get-rem(16) get-rem(16);
+}

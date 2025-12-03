@@ -4,10 +4,8 @@
   background-color: rgba(180, 180, 180, 0.13);
   padding: 1rem;
   width: 100%;
-
-  .main-header {
-    height: get-rem(80);
-  }
+  height: 100%;
+  border-top-left-radius: 10px;
 
   .main-container {
     .row {

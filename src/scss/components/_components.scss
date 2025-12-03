@@ -4,6 +4,7 @@
 @use "./core";
 @use "./card";
 @use "./nav-menu";
+@use "./search";
 
 .app-container {
   display: flex;

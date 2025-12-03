@@ -48,167 +48,193 @@
         </menu>
       </nav>
     </sidebar>
-    <main class="core">
-      <header class="main-header">
-        <nav>
-          <div class="routes"></div>
-        </nav>
-        <div class="header-btns">
-        </div>
-      </header>
-      <div class="main-container">
-        <section class="dashboard">
-          <h1 class="section-title">Dashboard</h1>
-          <div class="card-container grid">
-            <div class="row">
-              <div class="card col-3">
-                <div class="card-body flex">
-                  <div class="data-container">
-                    <h2 class="card-title">Numero<br> di prodotti</h2>
-                    <p class="js-numero-prodotti"></p>
-                  </div>
-                  <a href="#">
-                    <button type="button" class="btn-icon">
-                      <i data-lucide="barcode"></i>
-                    </button>
-                  </a>
-                </div>
-                <div class="card-footer">
-                  <span class="js-avvisi"></span>
-                </div>
-              </div>
-              <div class="card col-3">
-                <div class="card-body flex">
-                  <div class="data-container">
-                    <h2 class="card-title">Numero di<br> tipi di prodotti</h2>
-                    <p class="js-numero-tipi-prodotti"></p>
-                  </div>
-                  <a href="#">
-                    <button type="button" class="btn-icon">
-                      <i data-lucide="notebook-tabs"></i>
-                    </button>
-                  </a>
-                </div>
-                <div class="card-footer">
-                  <span class="js-avvisi"></span>
-                </div>
-              </div>
-              <div class="card col-3">
-                <div class="card-body flex">
-                  <div class="data-container">
-                    <h2 class="card-title">Quantità<br> totale</h2>
-                    <p class="js-quantita-totale"></p>
-                  </div>
-                  <a href="#">
-                    <button type="button" class="btn-icon">
-                      <i data-lucide="weight"></i>
-                    </button>
-                  </a>
-                </div>
-                <div class="card-footer">
-                  <span class="js-avvisi"></span>
-                </div>
-              </div>
-              <div class="card col-3">
-                <div class="card-body flex">
-                  <div class="data-container">
-                    <h2 class="card-title">Costo<br> totale</h2>
-                    <p class="js-costo-totale"></p>
-                  </div>
-                  <a href="#">
-                    <button type="button" class="btn-icon">
-                      <i data-lucide="banknote-arrow-down"></i>
-                    </button>
-                  </a>
-                </div>
-                <div class="card-footer">
-                  <span class="js-avvisi"></span>
-                </div>
-              </div>
+    <div class="main-container">
+      <div class="grid">
+        <header class="main-header row">
+          <nav class="col-5">
+            <div class="routes js-routes">
+              <p>
+                <a href="#">
+                  Dashboard
+                </a>
+                >
+              </p>
             </div>
-            <div class="row">
-              <div class="card col-5">
-                <div class="card-header">
-                  <h2 class="card-title">Bilancio</h2>
-                </div>
-                <div class="card-body">
-                  <div class="data-container ">
-                    <h3 class="card-title">In data <span class="js-date"></span></h3>
-                    <p class="js-top-acquistati"></p>
-                  </div>
-                </div>
-                <div class="card-footer">
-
-                </div>
-              </div>
-            </div>
+          </nav>
+          <div class="search col-6">
+            <input type="search" name="search" class="js-search search-input" placeholder="Cerca">
+            <button class="js-search-btn btn">
+              <i data-lucide="search"></i>
+            </button>
           </div>
-        </section>
-        <section class="inventario hidden">
-          <h2>INVENTARIO</h2>
-          <div class="js-inventario">
+          <div class="header-btns col-1">
+            <button type="button" class="btn"><i data-lucide="circle-question-mark"></i></button>
           </div>
-
-          <h2>GESTIONE INVENTARIO</h2>
-          <p>Aggiungi un articolo all'inventario</p>
-          <form class="js-gestione-inventario">
-            <ul>
-              <li>
-                <label for="tipo">Tipo:</label>
-                <select class="js-select-tipo" name="tipo" placeholder="Tipo articolo">
-                  <option value="generico">Generico</option>
-                  <option value="alimentare">Alimentare</option>
-                  <option value="elettronica">Elettronica</option>
-                </select>
-              </li>
-              <li>
-                <label for="nome">Articolo:</label>
-                <input type="text" name="nome" placeholder="Nome articolo">
-              </li>
-              <li>
-                <label for="prezzo">Prezzo in €:</label>
-                <input type="number" name="prezzo" placeholder="Prezzo articolo">
-              </li>
-              <li>
-                <label for="quantita">Quantità:</label>
-                <input type="number" name="quantita" placeholder="Quantità articolo">
-              </li>
-              <li>
-                <label for="costo">Costo in €:</label>
-                <input type="number" name="costo" placeholder="Costo articolo">
-              </li>
-              <li class="js-data-scadenza hidden">
-                <label for="scadenza">Data di scadenza:</label>
-                <input type="date" name="scadenza" placeholder="Data di scadenza">
-              </li>
-              <li class="js-garanzia hidden">
-                <label for="garanzia">Data di fine garanzia:</label>
-                <input type="date" name="garanzia" placeholder="Data di fine garanzia">
-              </li>
-            </ul>
-            <button class="js-btn-aggiungi" type="submit">Aggiungi</button>
-          </form>
-        </section>
-        <section class="negozio hidden">
-          <h2>VENDITA</h2>
-          <form class="js-form-vendita">
-            <label for="id">ID:</label>
-            <input type="number" name="id" class="js-input-id" placeholder="ID">
-            <br>
-            <label for="quantitaVendita">Quantita da vendere:</label>
-            <input type="number" name="quantitaVendita" class="js-input-quantita-vendita"
-              placeholder="Scrivi un numero">
-            <button type="submit" class="js-btn-vendita-submit">Vendi</button>
-          </form>
-        </section>
-        <section class="bilancio hidden">
-          <h2>GUADAGNO</h2>
-          <p>Guadagno totale: <span class="js-guadagno">0</span> €</p>
-        </section>
-        <section class="impostazioni hidden"></section>
-        <section class="account hidden"></section>
+        </header>
       </div>
-    </main>
+      <main class="core">
+        <div class="main-container">
+          <section class="dashboard">
+            <h1 class="section-title">Dashboard</h1>
+            <div class="card-container grid">
+              <div class="row cards-riepilogative">
+                <div class="card col-3">
+                  <div class="card-body flex">
+                    <div class="data-container">
+                      <h2 class="card-title">Numero<br> di prodotti</h2>
+                      <p class="js-numero-prodotti"></p>
+                    </div>
+                    <a href="#">
+                      <button type="button" class="btn-icon">
+                        <i data-lucide="barcode"></i>
+                      </button>
+                    </a>
+                  </div>
+                  <div class="card-footer">
+                    <span class="js-avvisi"></span>
+                  </div>
+                </div>
+                <div class="card col-3">
+                  <div class="card-body flex">
+                    <div class="data-container">
+                      <h2 class="card-title">Numero di<br> tipi di prodotti</h2>
+                      <p class="js-numero-tipi-prodotti"></p>
+                    </div>
+                    <a href="#">
+                      <button type="button" class="btn-icon">
+                        <i data-lucide="notebook-tabs"></i>
+                      </button>
+                    </a>
+                  </div>
+                  <div class="card-footer">
+                    <span class="js-avvisi"></span>
+                  </div>
+                </div>
+                <div class="card col-3">
+                  <div class="card-body flex">
+                    <div class="data-container">
+                      <h2 class="card-title">Quantità<br> totale</h2>
+                      <p class="js-quantita-totale"></p>
+                    </div>
+                    <a href="#">
+                      <button type="button" class="btn-icon">
+                        <i data-lucide="weight"></i>
+                      </button>
+                    </a>
+                  </div>
+                  <div class="card-footer">
+                    <span class="js-avvisi"></span>
+                  </div>
+                </div>
+                <div class="card col-3">
+                  <div class="card-body flex">
+                    <div class="data-container">
+                      <h2 class="card-title">Costo<br> totale</h2>
+                      <p class="js-costo-totale total-cost"></p>
+                    </div>
+                    <a href="#">
+                      <button type="button" class="btn-icon">
+                        <i data-lucide="banknote-arrow-down"></i>
+                      </button>
+                    </a>
+                  </div>
+                  <div class="card-footer">
+                    <span class="js-avvisi"></span>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="card col-5">
+                  <div class="card-header">
+                    <h2 class="card-title">Bilancio</h2>
+                  </div>
+                  <div class="card-body">
+                    <div class="data-container ">
+                      <h3 class="card-title">In data: <span class="js-date"></span></h3>
+                      <p class="js-bilancio"></p>
+                    </div>
+                  </div>
+                  <div class="card-footer">
+                    <div class="data-container">
+                      <div class="last-month">
+                        <h3 class="card-title">Mese scorso</h3>
+                        <p class="js-last-month-balance">0</p>
+                      </div>
+                      <div class="last-three-month">
+                        <h3 class="card-title">Ultimi 3 mesi</h3>
+                        <p class="js-last-three-month-balance">0</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section class="inventario hidden">
+            <h2>INVENTARIO</h2>
+            <div class="js-inventario">
+            </div>
+            <h2>GESTIONE INVENTARIO</h2>
+            <p>Aggiungi un articolo all'inventario</p>
+            <form class="js-gestione-inventario">
+              <ul>
+                <li>
+                  <label for="tipo">Tipo:</label>
+                  <select class="js-select-tipo" name="tipo" placeholder="Tipo articolo">
+                    <option value="generico">Generico</option>
+                    <option value="alimentare">Alimentare</option>
+                    <option value="elettronica">Elettronica</option>
+                  </select>
+                </li>
+                <li>
+                  <label for="nome">Articolo:</label>
+                  <input type="text" name="nome" placeholder="Nome articolo">
+                </li>
+                <li>
+                  <label for="prezzo">Prezzo in €:</label>
+                  <input type="number" name="prezzo" placeholder="Prezzo articolo">
+                </li>
+                <li>
+                  <label for="quantita">Quantità:</label>
+                  <input type="number" name="quantita" placeholder="Quantità articolo">
+                </li>
+                <li>
+                  <label for="costo">Costo in €:</label>
+                  <input type="number" name="costo" placeholder="Costo articolo">
+                </li>
+                <li class="js-data-scadenza hidden">
+                  <label for="scadenza">Data di scadenza:</label>
+                  <input type="date" name="scadenza" placeholder="Data di scadenza">
+                </li>
+                <li class="js-garanzia hidden">
+                  <label for="garanzia">Data di fine garanzia:</label>
+                  <input type="date" name="garanzia" placeholder="Data di fine garanzia">
+                </li>
+              </ul>
+              <button class="js-btn-aggiungi" type="submit">Aggiungi</button>
+            </form>
+          </section>
+          <section class="negozio hidden">
+            <h2>VENDITA</h2>
+            <form class="js-form-vendita">
+              <label for="id">ID:</label>
+              <input type="number" name="id" class="js-input-id" placeholder="ID">
+              <br>
+              <label for="quantitaVendita">Quantita da vendere:</label>
+              <input type="number" name="quantitaVendita" class="js-input-quantita-vendita"
+                placeholder="Scrivi un numero">
+              <button type="submit" class="js-btn-vendita-submit">Vendi</button>
+            </form>
+          </section>
+          <section class="bilancio hidden">
+            <h2>GUADAGNO</h2>
+            <p>Guadagno totale: <span class="js-guadagno">0</span> €</p>
+          </section>
+          <section class="impostazioni hidden"></section>
+          <section class="account hidden"></section>
+        </div>
+      </main>
+    </div>
     <footer>
     </footer>
   </div>

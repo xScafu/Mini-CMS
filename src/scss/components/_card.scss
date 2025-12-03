@@ -19,10 +19,15 @@
 
   .card-body {
     justify-content: space-between;
+    height: 100%;
 
     .data-container {
       padding-left: 1rem;
       border-left: solid 2px rgba(0, 0, 0, 0.24);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: flex-start;
       .card-title {
         color: var(--clr-secondary);
       }
@@ -54,6 +59,13 @@
     p {
       font-weight: 500;
       font-size: get-rem(48);
+    }
+  }
+
+  .card-footer {
+    .data-container {
+      display: flex;
+      gap: get-rem(32);
     }
   }
 }

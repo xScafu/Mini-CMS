@@ -19,3 +19,38 @@ body {
   padding: get-rem(48);
   height: 100vh;
 }
+
+.main-container {
+  width: 100%;
+}
+
+.main-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0rem 1rem;
+  width: 100%;
+  height: get-rem(80);
+  background-color: rgba(211, 211, 211, 0.13);
+  margin-bottom: 0 !important;
+
+  .routes {
+    padding-left: 1rem;
+    color: var(--clr-secondary);
+    a {
+      text-decoration: none;
+      &:visited {
+        color: var(--clr-secondary);
+      }
+    }
+  }
+
+  .header-btns {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .btn {
+    padding: get-rem(8);
+  }
+}

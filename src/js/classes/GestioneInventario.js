@@ -1,12 +1,15 @@
 import { Prodotto } from "./prodotto/Prodotto";
 import { ProdottoAlimentare } from "./prodotto/tipi/Alimentare";
 import { ProdottoElettronico } from "./prodotto/tipi/Elettronico";
+import { GestioneContabilita } from "./GestioneContabilita";
 
 class GestoreInventario {
   constructor(renderHTML) {
     this.prodotti = {};
     this.nextId = 1;
     this.render = renderHTML;
+    this.transazioni = [];
+    this.contabilita = new GestioneContabilita();
   }
 
   aggiungiProdotto(
@@ -16,7 +19,8 @@ class GestoreInventario {
     quantita,
     costo,
     dataScadenza,
-    garanzia
+    garanzia,
+    dataAcquisto
   ) {
     const prodottoEsistente = Object.values(this.prodotti).find(
       (prodotto) => prodotto.nome === nome
@@ -29,7 +33,13 @@ class GestoreInventario {
           `Aggiunto ${quantita} a ${nome}. La quantita ora è ${prodottoEsistente.quantita}.`
         );
       } else if (tipo === "generico") {
-        const prodotto = new Prodotto(nome, prezzo, quantita, costo);
+        const prodotto = new Prodotto(
+          nome,
+          prezzo,
+          quantita,
+          costo,
+          dataAcquisto
+        );
         this.prodotti[this.nextId] = prodotto;
         this.nextId++;
         this.render(this.prodotti);
@@ -42,7 +52,8 @@ class GestoreInventario {
           prezzo,
           quantita,
           costo,
-          dataScadenza
+          dataScadenza,
+          dataAcquisto
         );
         this.prodotti[this.nextId] = prodottoAlimentare;
         this.nextId++;
@@ -56,7 +67,8 @@ class GestoreInventario {
           prezzo,
           quantita,
           costo,
-          garanzia
+          garanzia,
+          dataAcquisto
         );
         this.prodotti[this.nextId] = prodottoElettronico;
         this.nextId++;
@@ -70,12 +82,27 @@ class GestoreInventario {
     }
   }
 
-  vendiProdotto(id, quantita) {
+  vendiProdotto(
+    id,
+    quantita,
+    data = new Date().getTime(),
+    isSimulation = false
+  ) {
     if (this.prodotti[id]) {
-      if (this.prodotti[id].quantita >= quantita) {
-        this.prodotti[id].quantita -= quantita;
-        this.prodotti[id].venduti += quantita;
-        this.render(this.prodotti);
+      if (isSimulation || this.prodotti[id].quantita >= quantita) {
+        const transazioneVendita = {
+          idProdotto: id,
+          quantitaVenduta: quantita,
+          venditaUnitario: this.prodotti[id].prezzo,
+          costoUnitario: this.prodotti[id].costo,
+          data: data,
+        };
+        this.transazioni.push(transazioneVendita);
+        if (!isSimulation) {
+          this.prodotti[id].quantita -= quantita;
+          this.prodotti[id].venduti += quantita;
+          this.render(this.prodotti);
+        }
         console.log(
           `Vendita di ${quantita} ${this.prodotti[id].nome} andata a buon fine. In inventario ne rimangono ${this.prodotti[id].quantita}`
         );
@@ -89,12 +116,10 @@ class GestoreInventario {
     }
   }
 
-  calcolaGuadagnoTotale() {
-    let guadagnoTotale = 0;
-    Object.values(this.prodotti).forEach((prodotto) => {
-      guadagnoTotale += (prodotto.prezzo - prodotto.costo) * prodotto.venduti;
+  simulaVendite(venditeArray) {
+    venditeArray.forEach((vendita) => {
+      this.vendiProdotto(vendita.id, vendita.quantita, vendita.data, true);
     });
-    return guadagnoTotale;
   }
 
   visualizzaInventario() {
@@ -119,7 +144,7 @@ function renderHTML(inventario) {
           } else if (prodotto instanceof ProdottoElettronico) {
             dettagliAggiuntivi = ` | Garanzia: ${prodotto.garanzia} `;
           }
-          return `<li>ID: ${id} | Nome: ${prodotto.nome} | Quantita: ${prodotto.quantita} | Prezzo: ${prodotto.prezzo}€ | Costo: ${prodotto.costo}€ ${dettagliAggiuntivi}</li>`;
+          return `<li>ID: ${id} | Nome: ${prodotto.nome} | Quantita: ${prodotto.quantita} | Prezzo: ${prodotto.prezzo}€ | Costo: ${prodotto.costo}€ ${dettagliAggiuntivi} | ${prodotto.dataAcquisto}</li>`;
         })
         .join("")}
     </ul>`;
@@ -129,6 +154,7 @@ function renderHTML(inventario) {
 }
 
 const inventario = new GestoreInventario(renderHTML);
+const date = new Date();
 
 const gestioneInventario = document.querySelector(".js-gestione-inventario");
 const verificaTipoSelect = document.querySelector(".js-select-tipo");
@@ -139,8 +165,24 @@ gestioneInventario.addEventListener("submit", inserisciArticolo);
 verificaTipoSelect.addEventListener("change", verificaTipo);
 venditaForm.addEventListener("submit", vendiArticolo);
 
+let pastDate = date - 25 * 24 * 60 * 60 * 1000;
+
+const venditeIniziali = [
+  { id: 1, quantita: 5, data: pastDate },
+  { id: 2, quantita: 3, data: pastDate },
+  { id: 3, quantita: 10, data: pastDate },
+  { id: 1, quantita: 2, data: pastDate }, // Una seconda vendita dello stesso prodotto
+];
+
 caricaInventarioIniziale();
-aggiornaGuadagnoUI();
+
+function currentDate() {
+  let day = date.getDate().toString();
+  let month = date.getMonth().toString();
+  let year = date.getFullYear().toString();
+
+  return `${day}/${month}/${year}`;
+}
 
 function inserisciArticolo(e) {
   e.preventDefault();
@@ -203,13 +245,7 @@ function vendiArticolo(e) {
 
   inventario.vendiProdotto(id, quantita);
 
-  aggiornaGuadagnoUI();
   aggiornaStatisticheUI();
-}
-
-function aggiornaGuadagnoUI() {
-  const guadagno = document.querySelector(".js-guadagno");
-  guadagno.innerHTML = inventario.calcolaGuadagnoTotale();
 }
 
 async function caricaInventarioIniziale() {
@@ -221,14 +257,16 @@ async function caricaInventarioIniziale() {
       inventario.aggiungiProdotto(
         prodotto.tipo.toLowerCase(),
         prodotto.nome,
-        prodotto.prezzo,
-        prodotto.quantita,
-        prodotto.costo,
+        Number(prodotto.prezzo),
+        Number(prodotto.quantita),
+        Number(prodotto.costo),
         prodotto.dataScadenza,
-        prodotto.garanzia
+        prodotto.garanzia,
+        prodotto.dataAcquisto
       );
     });
     inventario.render(inventario.prodotti);
+    inventario.simulaVendite(venditeIniziali);
     aggiornaStatisticheUI();
   } catch (error) {
     console.log(`ERRORE: ${error}`);
@@ -255,7 +293,7 @@ function aggiornaStatisticheUI() {
 
   const printQuantitaTotale = document.querySelector(".js-quantita-totale");
   if (printQuantitaTotale) {
-    printQuantitaTotale.textContent = quantitaTotale + " unità";
+    printQuantitaTotale.textContent = quantitaTotale;
   }
 
   //Costo totale
@@ -277,4 +315,46 @@ function aggiornaStatisticheUI() {
   if (printTipiProdotti) {
     printTipiProdotti.textContent = new Set(tipiDiProdotti).size;
   }
+
+  //date
+  const currentDateUi = document.querySelector(".js-date");
+  currentDateUi.textContent = currentDate();
+
+  // Calcoli Finanziari Cumulativi
+  const guadagno = document.querySelector(".js-guadagno");
+  const bilancio = document.querySelector(".js-bilancio");
+  // const costo = document.querySelector(".js-costo");
+
+  // 1. Calcoli cumulativi
+  guadagno.textContent =
+    inventario.contabilita.calcolaGuadagno(inventario.prodotti) + " €";
+  // costo.textContent =
+  //   inventario.contabilita.calcolaCostoInventario(inventario.prodotti) + " €";
+  bilancio.textContent =
+    inventario.contabilita.calcolaBilancio(inventario.prodotti) + " €";
+
+  // ---
+  // Bilanci Storici
+  const bilancioMese = document.querySelector(".js-last-month-balance");
+  const bilancioTreMesi = document.querySelector(
+    ".js-last-three-month-balance"
+  );
+
+  // 2. Calcoli Storici
+  let filtroMese = inventario.contabilita.getTransazioniPerPeriodo(
+    inventario.transazioni,
+    1
+  );
+  let filtroTreMesi = inventario.contabilita.getTransazioniPerPeriodo(
+    inventario.transazioni,
+    3
+  );
+
+  let calcoloBilancioMese =
+    inventario.contabilita.calcolaBilancioStorico(filtroMese);
+  let calcoloBilancioTreMesi =
+    inventario.contabilita.calcolaBilancioStorico(filtroTreMesi);
+
+  bilancioMese.textContent = calcoloBilancioMese + " €";
+  bilancioTreMesi.textContent = calcoloBilancioTreMesi + " €";
 }

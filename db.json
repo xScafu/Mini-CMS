@@ -5,7 +5,8 @@
       "nome": "Carta",
       "prezzo": 1.5,
       "quantita": 100,
-      "costo": 0.8
+      "costo": 0.8,
+      "dataAcquisto": "2025-11-25"
     },
     {
       "tipo": "Alimentare",
@@ -13,7 +14,8 @@
       "prezzo": 3.0,
       "quantita": 50,
       "costo": 1.5,
-      "dataScadenza": "2026-03-01"
+      "dataScadenza": "2026-03-01",
+      "dataAcquisto": "2025-11-25"
     },
     {
       "tipo": "Elettronica",
@@ -21,7 +23,8 @@
       "prezzo": 500.0,
       "quantita": 10,
       "costo": 350.0,
-      "garanzia": "2027-11-28"
+      "garanzia": "2027-11-28",
+      "dataAcquisto": "2025-11-25"
     },
     {
       "tipo": "Elettronica",
@@ -29,7 +32,8 @@
       "prezzo": 300,
       "quantita": 20,
       "costo": 150,
-      "garanzia": "2027-11-28"
+      "garanzia": "2027-11-28",
+      "dataAcquisto": "2025-11-25"
     },
     {
       "tipo": "Alimentare",
@@ -37,7 +41,8 @@
       "prezzo": 4,
       "quantita": 50,
       "costo": 2,
-      "dataScadenza": "2026-01-01"
+      "dataScadenza": "2026-01-01",
+      "dataAcquisto": "2025-11-25"
     }
   ]
 }

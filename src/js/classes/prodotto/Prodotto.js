@@ -5,5 +5,6 @@ export class Prodotto {
     this.quantita = quantita;
     this.costo = costo;
     this.venduti = 0;
+    this.quantitaIniziale = quantita;
   }
 }

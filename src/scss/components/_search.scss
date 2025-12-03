@@ -1,0 +1,32 @@
+@use "../inc/functions" as *;
+
+.search {
+  display: flex;
+  position: relative;
+
+  .search-input {
+    border: none;
+    padding: get-rem(8) get-rem(8);
+    width: 100%;
+    box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+    background-color: rgba(255, 255, 255, 0.658);
+    transition: all ease 0.5s;
+
+    &:focus {
+      box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+      outline: none;
+      background-color: white;
+    }
+  }
+
+  .btn {
+    background: transparent;
+    position: absolute;
+    top: -1px;
+    right: 0;
+    &:hover {
+      background: none;
+    }
+  }
+}
