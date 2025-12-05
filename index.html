@@ -6,7 +6,6 @@
   <link rel="icon" type="image/svg+xml" href="/vite.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>mini-cms</title>
-
 </head>
 
 <body>
@@ -29,25 +28,30 @@
         <menu class="nav-menu">
           <ul class="menu-list">
             <li>
-              <a href="#"><button class="btn" type="button"><i
+              <a href="\"><button class="btn" type="button"><i
                     data-lucide="square-chart-gantt"></i>Dashboard</button></a>
             </li>
             <li>
-              <a href="#"><button class="btn" type="button"><i data-lucide="list"></i>Inventario</button></a>
+              <a href="src\pages\inventario.html"><button class="btn" type="button"><i
+                    data-lucide="list"></i>Inventario</button></a>
             </li>
             <li>
-              <a href="#"><button class="btn" type="button"><i data-lucide="shopping-cart"></i>Negozio</button></a>
+              <a href="src\pages\negozio.html"><button class="btn" type="button"><i
+                    data-lucide="shopping-cart"></i>Negozio</button></a>
             </li>
             <li>
-              <a href="#"><button class="btn" type="button"><i data-lucide="scale"></i>Bilancio</button></a>
+              <a href="src\pages\bilancio.html"><button class="btn" type="button"><i
+                    data-lucide="scale"></i>Bilancio</button></a>
             </li>
           </ul>
           <ul class="menu-settings">
             <li>
-              <a href="#"><button class="btn" type="button"><i data-lucide="settings"></i>Impostazioni</button></a>
+              <a href="src\pages\impostazioni.html"><button class="btn" type="button"><i
+                    data-lucide="settings"></i>Impostazioni</button></a>
             </li>
             <li>
-              <a href="#"><button class="btn" type="button"><i data-lucide="square-user-round"></i>Account</button></a>
+              <a href="src\pages\account.html"><button class="btn" type="button"><i
+                    data-lucide="square-user-round"></i>Account</button></a>
             </li>
           </ul>
         </menu>
@@ -83,29 +87,16 @@
             <h1 class="section-title">Dashboard</h1>
             <div class="card-container grid">
               <div class="row cards-riassunto">
-                <template id="template-card">
-                  <div class="card col-3">
-                    <div class="card-body flex">
-                      <div class="data-container">
-                        <h2 class="card-title js-card-title"> </h2>
-                        <p class="js-card-value"></p>
-                      </div>
-                      <a href="#">
-                        <button type="button" class="btn-icon">
-                          <i class="js-card-icon" data-lucide="barcode"></i>
-                        </button>
-                      </a>
-                    </div>
-                    <div class="card-footer">
-                      <span class="js-avvisi"></span>
-                    </div>
-                  </div>
-                </template>
               </div>
               <div class="row">
                 <div class="card col-5">
                   <div class="card-header">
                     <h2 class="card-title">Bilancio</h2>
+                    <a href="#">
+                      <button type="button" class="btn">
+                        <i class="icon" data-lucide="scale"></i>
+                      </button>
+                    </a>
                   </div>
                   <div class="card-body">
                     <div class="data-container ">
@@ -114,83 +105,13 @@
                     </div>
                   </div>
                   <div class="card-footer">
-                    <div class="data-container">
-                      <div class="last-month">
-                        <h3 class="card-title">Mese scorso</h3>
-                        <p class="js-last-month-balance">0</p>
-                      </div>
-                      <div class="last-three-month">
-                        <h3 class="card-title">Ultimi 3 mesi</h3>
-                        <p class="js-last-three-month-balance">0</p>
-                      </div>
+                    <div class="data-container js-card-data-container">
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </section>
-          <section class="inventario hidden">
-            <h2>INVENTARIO</h2>
-            <div class="js-inventario">
-            </div>
-            <h2>GESTIONE INVENTARIO</h2>
-            <p>Aggiungi un articolo all'inventario</p>
-            <form class="js-gestione-inventario">
-              <ul>
-                <li>
-                  <label for="tipo">Tipo:</label>
-                  <select class="js-select-tipo" name="tipo" placeholder="Tipo articolo">
-                    <option value="generico">Generico</option>
-                    <option value="alimentare">Alimentare</option>
-                    <option value="elettronica">Elettronica</option>
-                  </select>
-                </li>
-                <li>
-                  <label for="nome">Articolo:</label>
-                  <input type="text" name="nome" placeholder="Nome articolo">
-                </li>
-                <li>
-                  <label for="prezzo">Prezzo in €:</label>
-                  <input type="number" name="prezzo" placeholder="Prezzo articolo">
-                </li>
-                <li>
-                  <label for="quantita">Quantità:</label>
-                  <input type="number" name="quantita" placeholder="Quantità articolo">
-                </li>
-                <li>
-                  <label for="costo">Costo in €:</label>
-                  <input type="number" name="costo" placeholder="Costo articolo">
-                </li>
-                <li class="js-data-scadenza hidden">
-                  <label for="scadenza">Data di scadenza:</label>
-                  <input type="date" name="scadenza" placeholder="Data di scadenza">
-                </li>
-                <li class="js-garanzia hidden">
-                  <label for="garanzia">Data di fine garanzia:</label>
-                  <input type="date" name="garanzia" placeholder="Data di fine garanzia">
-                </li>
-              </ul>
-              <button class="js-btn-aggiungi" type="submit">Aggiungi</button>
-            </form>
-          </section>
-          <section class="negozio hidden">
-            <h2>VENDITA</h2>
-            <form class="js-form-vendita">
-              <label for="id">ID:</label>
-              <input type="number" name="id" class="js-input-id" placeholder="ID">
-              <br>
-              <label for="quantitaVendita">Quantita da vendere:</label>
-              <input type="number" name="quantitaVendita" class="js-input-quantita-vendita"
-                placeholder="Scrivi un numero">
-              <button type="submit" class="js-btn-vendita-submit">Vendi</button>
-            </form>
-          </section>
-          <section class="bilancio hidden">
-            <h2>GUADAGNO</h2>
-            <p>Guadagno totale: <span class="js-guadagno">0</span> €</p>
-          </section>
-          <section class="impostazioni hidden"></section>
-          <section class="account hidden"></section>
         </div>
       </main>
     </div>
@@ -199,10 +120,34 @@
   </div>
 </body>
 
+<div class="cards-template hidden">
+  <template id="template-card">
+    <div class="card col-3">
+      <div class="card-body flex">
+        <div class="data-container">
+          <h2 class="card-title js-card-title"> </h2>
+          <p class="js-card-value"></p>
+        </div>
+        <a href="#">
+          <button type="button" class="btn-icon">
+            <i class="js-card-icon icon"></i>
+          </button>
+        </a>
+      </div>
+      <div class="card-footer">
+        <span class="js-avvisi"></span>
+      </div>
+    </div>
+  </template>
+
+  <template id="card-bilancio-content">
+    <div class="last-month js-balance-content">
+      <h3 class="card-title js-balance-label"></h3>
+      <p class="js-balance-value"></p>
+    </div>
+  </template>
+</div>
+
 <script type="module" src="/src/js/main.js"></script>
-<script>
-
-
-</script>
 
 </html>

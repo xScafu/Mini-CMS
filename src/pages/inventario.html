@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventario</title>
+</head>
+
+<body>
+
+    <dialog class="loader js-loader">
+        <div class="loader-spinner"></div>
+    </dialog>
+
+    <div class="app-container">
+        <sidebar class="sidebar">
+            <nav>
+                <header class="nav-header">
+                    <div class="header-container">
+                        <h1>Mini-CMS</h1>
+                        <button class="btn" type="button">
+                            <i data-lucide="square-chevron-left"></i>
+                        </button>
+                    </div>
+                </header>
+                <menu class="nav-menu">
+                    <ul class="menu-list">
+                        <li>
+                            <a href="\"><button class="btn" type="button"><i
+                                        data-lucide="square-chart-gantt"></i>Dashboard</button></a>
+                        </li>
+                        <li>
+                            <a href="src\pages\inventario.html"><button class="btn" type="button"><i
+                                        data-lucide="list"></i>Inventario</button></a>
+                        </li>
+                        <li>
+                            <a href="src\pages\negozio.html"><button class="btn" type="button"><i
+                                        data-lucide="shopping-cart"></i>Negozio</button></a>
+                        </li>
+                        <li>
+                            <a href="src\pages\bilancio.html"><button class="btn" type="button"><i
+                                        data-lucide="scale"></i>Bilancio</button></a>
+                        </li>
+                    </ul>
+                    <ul class="menu-settings">
+                        <li>
+                            <a href="src\pages\impostazioni.html"><button class="btn" type="button"><i
+                                        data-lucide="settings"></i>Impostazioni</button></a>
+                        </li>
+                        <li>
+                            <a href="src\pages\account.html"><button class="btn" type="button"><i
+                                        data-lucide="square-user-round"></i>Account</button></a>
+                        </li>
+                    </ul>
+                </menu>
+            </nav>
+        </sidebar>
+        <div class="main-container">
+            <div class="grid">
+                <header class="main-header row">
+                    <nav class="col-5">
+                        <div class="routes js-routes">
+                            <p>
+                                <a href="#">
+                                    Inventario
+                                </a>
+                                >
+                            </p>
+                        </div>
+                    </nav>
+                    <div class="search col-6">
+                        <input type="search" name="search" class="js-search search-input" placeholder="Cerca">
+                        <button class="js-search-btn btn">
+                            <i data-lucide="search"></i>
+                        </button>
+                    </div>
+                    <div class="header-btns col-1">
+                        <button type="button" class="btn"><i data-lucide="circle-question-mark"></i></button>
+                    </div>
+                </header>
+            </div>
+            <main class="core">
+                <div class="main-container">
+                    <div class="inventario">
+                        <h1 class="section-title">Inventario</h1>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+</body>
+
+<script type="module" src="../js/main.js"></script>
+
+</html>

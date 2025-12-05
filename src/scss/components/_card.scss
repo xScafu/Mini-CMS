@@ -12,6 +12,9 @@
   gap: 1rem;
 
   .card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     .card-title {
       font-size: get-rem(24);
     }

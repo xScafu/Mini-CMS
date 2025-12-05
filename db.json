@@ -48,13 +48,13 @@
   "cards": [
     {
       "id": 1,
-      "label": "Numero di prodotti",
+      "label": "Numero<br> di prodotti",
       "icon": "barcode",
       "value": 50
     },
     {
       "id": 2,
-      "label": "Numero di tipi di prodotti",
+      "label": "Numero<br> di tipi di prodotti",
       "icon": "notebook-tabs",
       "value": 10
     },
@@ -68,7 +68,19 @@
       "id": 4,
       "label": "Costo totale",
       "icon": "banknote-arrow-down",
-      "value": 15000
+      "value": 15000,
+      "moneySymbol": "€"
     }
+  ],
+  "bilancio": [
+    {
+      "id": 1,
+      "value": 6200,
+      "moneySymbol": "€"
+    },
+    { "id": 2, "label": "Mese scorso", "value": 3200, "moneySymbol": "€" },
+    { "id": 3, "label": "Ultimi 3 mesi", "value": 5000, "moneySymbol": "€" },
+    { "id": 4, "label": "Ultimi 6 mesi", "value": 7500, "moneySymbol": "€" },
+    { "id": 4, "label": "Ultimo anno", "value": 11500, "moneySymbol": "€" }
   ]
 }

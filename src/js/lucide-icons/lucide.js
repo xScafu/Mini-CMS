@@ -32,8 +32,6 @@ createIcons({
     CircleQuestionMark,
     Search,
   },
-  attrs: {
-    class: "icon",
-  },
   nameAttr: "data-lucide",
+  inTemplates: true,
 });
