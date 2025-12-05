@@ -6,10 +6,15 @@
   <link rel="icon" type="image/svg+xml" href="/vite.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>mini-cms</title>
-  <script type="module" src="/src/js/main.js" defer></script>
+
 </head>
 
 <body>
+
+  <dialog class="loader js-loader">
+    <div class="loader-spinner"></div>
+  </dialog>
+
   <div class="app-container">
     <sidebar class="sidebar">
       <nav>
@@ -77,71 +82,25 @@
           <section class="dashboard">
             <h1 class="section-title">Dashboard</h1>
             <div class="card-container grid">
-              <div class="row cards-riepilogative">
-                <div class="card col-3">
-                  <div class="card-body flex">
-                    <div class="data-container">
-                      <h2 class="card-title">Numero<br> di prodotti</h2>
-                      <p class="js-numero-prodotti"></p>
+              <div class="row cards-riassunto">
+                <template id="template-card">
+                  <div class="card col-3">
+                    <div class="card-body flex">
+                      <div class="data-container">
+                        <h2 class="card-title js-card-title"> </h2>
+                        <p class="js-card-value"></p>
+                      </div>
+                      <a href="#">
+                        <button type="button" class="btn-icon">
+                          <i class="js-card-icon" data-lucide="barcode"></i>
+                        </button>
+                      </a>
                     </div>
-                    <a href="#">
-                      <button type="button" class="btn-icon">
-                        <i data-lucide="barcode"></i>
-                      </button>
-                    </a>
-                  </div>
-                  <div class="card-footer">
-                    <span class="js-avvisi"></span>
-                  </div>
-                </div>
-                <div class="card col-3">
-                  <div class="card-body flex">
-                    <div class="data-container">
-                      <h2 class="card-title">Numero di<br> tipi di prodotti</h2>
-                      <p class="js-numero-tipi-prodotti"></p>
+                    <div class="card-footer">
+                      <span class="js-avvisi"></span>
                     </div>
-                    <a href="#">
-                      <button type="button" class="btn-icon">
-                        <i data-lucide="notebook-tabs"></i>
-                      </button>
-                    </a>
                   </div>
-                  <div class="card-footer">
-                    <span class="js-avvisi"></span>
-                  </div>
-                </div>
-                <div class="card col-3">
-                  <div class="card-body flex">
-                    <div class="data-container">
-                      <h2 class="card-title">Quantità<br> totale</h2>
-                      <p class="js-quantita-totale"></p>
-                    </div>
-                    <a href="#">
-                      <button type="button" class="btn-icon">
-                        <i data-lucide="weight"></i>
-                      </button>
-                    </a>
-                  </div>
-                  <div class="card-footer">
-                    <span class="js-avvisi"></span>
-                  </div>
-                </div>
-                <div class="card col-3">
-                  <div class="card-body flex">
-                    <div class="data-container">
-                      <h2 class="card-title">Costo<br> totale</h2>
-                      <p class="js-costo-totale total-cost"></p>
-                    </div>
-                    <a href="#">
-                      <button type="button" class="btn-icon">
-                        <i data-lucide="banknote-arrow-down"></i>
-                      </button>
-                    </a>
-                  </div>
-                  <div class="card-footer">
-                    <span class="js-avvisi"></span>
-                  </div>
-                </div>
+                </template>
               </div>
               <div class="row">
                 <div class="card col-5">
@@ -239,5 +198,11 @@
     </footer>
   </div>
 </body>
+
+<script type="module" src="/src/js/main.js"></script>
+<script>
+
+
+</script>
 
 </html>
