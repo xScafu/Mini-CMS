@@ -70,7 +70,7 @@
                         </div>
                     </nav>
                     <div class="search col-6">
-                        <input type="search" name="search" class="js-search search-input" placeholder="Cerca">
+                        <input type="search" name="search" class="js-search search-input" placeholder="Cerca nel CMS">
                         <button class="js-search-btn btn">
                             <i data-lucide="search"></i>
                         </button>
@@ -82,9 +82,49 @@
             </div>
             <main class="core">
                 <div class="main-container">
-                    <div class="inventario">
-                        <h1 class="section-title">Inventario</h1>
-                    </div>
+                    <section class="inventario">
+                        <div class="container-header">
+                            <h1 class="section-title">Inventario</h1>
+                            <div class="filters-wrapper">
+                                <dialog popover="auto" id="openFilters" class="filters-popover ">
+                                    <ul class="js-filters-dialog-wrapper genere-filter">
+                                        <h2>Genere</h2>
+                                    </ul>
+                                    <ul class="name-filter">
+                                        <h2>Nome</h2>
+                                        <li>
+                                            <input type="checkbox" name="a-z" id="a-z">
+                                            <label for="a-z">A-Z<i class="icon"
+                                                    data-lucide="arrow-down-a-z"></i></label>
+                                        </li>
+                                        <li>
+                                            <input type="checkbox" name="z-a" id="z-a">
+                                            <label for="z-a">Z-A<i class="icon" data-lucide="arrow-up-z-a"></i></label>
+                                        </li>
+                                    </ul>
+                                </dialog>
+                                <button type="button" popovertarget="openFilters" class="filters">
+                                    <p>Filtri</p>
+                                    <i data-lucide="list-filter" class="icon small"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="container">
+                            <div class="table grid">
+                                <div class="row head">
+                                    <h3 class="col-2">ID</h3>
+                                    <h3 class="col-6">Nome</h3>
+                                    <h3 class="col-3">Genere</h3>
+                                </div>
+                                <div class="row body">
+                                    <p class="js-id col-2">Ciao</p>
+                                    <p class="js-nome col-6">Ciao</p>
+                                    <p class="js-genere col-2">Ciao</p>
+                                    <i class="icon" data-lucide="search js-cta-table col-1"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
                 </div>
             </main>
         </div>
@@ -92,6 +132,16 @@
 
 </body>
 
-<script type="module" src="../js/main.js"></script>
+
+<template id="template-dialog-filters">
+    <li class="js-filter">
+        <input class="js-filter-checkbox" type="checkbox" name="name">
+        <label class="js-filter-label" for="name"></label>
+    </li>
+</template>
+
+<script type="module" src="../js/main.js">
+
+</script>
 
 </html>

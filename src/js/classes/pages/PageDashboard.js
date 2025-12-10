@@ -14,11 +14,13 @@ import {
   CircleQuestionMark,
   Search,
 } from "lucide";
+import { LoadingSpinner } from "../components/LoadingSpinner";
 
 export class PageDashboard {
   constructor() {
     this.cards = [];
     this.date = new Date();
+    this.spinner = new LoadingSpinner();
   }
 
   init() {
@@ -28,11 +30,12 @@ export class PageDashboard {
 
   async fetchCards() {
     //fetch dati
-    this.loadingDataSpinner();
+    this.spinner.spinnerIsActive(true);
     try {
       const response = await fetch("http://localhost:3000/cards");
       const data = await response.json();
       this.createCards(data);
+      this.spinner.spinnerIsActive(false);
     } catch (error) {
       console.log(error);
     }
@@ -76,16 +79,6 @@ export class PageDashboard {
 
       wrapper.appendChild(clone);
     }
-  }
-
-  loadingDataSpinner() {
-    const spinner = document.querySelector(".js-loader");
-    spinner.showModal();
-
-    setTimeout(() => {
-      spinner.classList.add("hidden");
-      spinner.close();
-    }, 2000);
   }
 
   async fetchBilancio() {

@@ -8,5 +8,11 @@ import { PageInventario } from "./classes/pages/PageInventario.js";
 let pageDashboard = new PageDashboard();
 let pageInventario = new PageInventario();
 
-pageDashboard.init();
-pageInventario.init();
+const currentLocation = window.location.pathname;
+console.log(currentLocation);
+
+if (currentLocation === "/") {
+  pageDashboard.init();
+} else if (currentLocation === "/src/pages/inventario.html") {
+  pageInventario.init();
+}

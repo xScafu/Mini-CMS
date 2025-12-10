@@ -14,6 +14,9 @@ import {
   BanknoteArrowDown,
   CircleQuestionMark,
   Search,
+  ListFilter,
+  ArrowDownAZ,
+  ArrowUpZA,
 } from "lucide";
 
 createIcons({
@@ -31,6 +34,9 @@ createIcons({
     BanknoteArrowDown,
     CircleQuestionMark,
     Search,
+    ListFilter,
+    ArrowDownAZ,
+    ArrowUpZA,
   },
   nameAttr: "data-lucide",
   inTemplates: true,

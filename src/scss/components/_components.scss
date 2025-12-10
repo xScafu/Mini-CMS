@@ -6,6 +6,7 @@
 @use "./nav-menu";
 @use "./search";
 @use "./loader";
+@use "./button";
 
 .app-container {
   display: flex;
@@ -15,28 +16,13 @@
   border: solid 1px rgba(85, 85, 85, 0.096);
 }
 
-.btn {
-  display: flex;
-  align-items: center;
-  gap: get-rem(16);
-  padding: get-rem(8) get-rem(16);
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-size: get-rem(18);
-  font-weight: 500;
-  border-radius: 10px;
-  &:hover {
-    background-image: linear-gradient(
-      180deg,
-      rgba(255, 255, 255, 0.3568627451),
-      rgba(214, 214, 214, 0.137)
-    );
-  }
-}
-
 .icon {
   stroke: black;
   width: get-rem(24);
   height: get-rem(24);
+
+  &.small {
+    width: get-rem(12);
+    height: get-rem(12);
+  }
 }
