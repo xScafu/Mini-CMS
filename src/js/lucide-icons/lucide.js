@@ -17,6 +17,7 @@ import {
   ListFilter,
   ArrowDownAZ,
   ArrowUpZA,
+  PackageOpen,
 } from "lucide";
 
 createIcons({
@@ -37,6 +38,7 @@ createIcons({
     ListFilter,
     ArrowDownAZ,
     ArrowUpZA,
+    PackageOpen,
   },
   nameAttr: "data-lucide",
   inTemplates: true,

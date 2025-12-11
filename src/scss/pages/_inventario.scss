@@ -39,14 +39,15 @@
     border-radius: get-rem(8);
     box-shadow: 0 0 4px rgba(0, 0, 0, 0.16);
 
-    ul {
+    .genere-filter,
+    .name-filter {
       display: flex;
       flex-direction: column;
       gap: get-rem(8);
       padding-bottom: get-rem(8);
       border-bottom: solid 1px var(--clr-secondary);
 
-      li {
+      .filter {
         display: flex;
         justify-content: flex-start;
         gap: get-rem(8);
@@ -73,6 +74,7 @@
     height: auto;
     padding: get-rem(20);
     background-image: linear-gradient(180deg, #ffffff5b, #00000002);
+    border-radius: get-rem(12);
 
     .table {
       border: solid 1px black;
@@ -83,13 +85,29 @@
       .row {
         gap: 0;
         padding: 0;
+        padding: get-rem(8);
+        border-bottom: solid 1px var(--clr-secondary);
+        align-items: center;
+
+        &:last-child {
+          border: none;
+        }
+
+        :nth-child(1n) {
+          padding: get-rem(8);
+        }
+
+        .icon {
+          padding: 0;
+        }
+      }
+
+      .btn-icon {
+        max-width: get-rem(40);
       }
 
       h3 {
         padding: get-rem(8);
-      }
-      :nth-child(n + 2) {
-        border-left: solid 1px var(--clr-secondary);
       }
     }
   }

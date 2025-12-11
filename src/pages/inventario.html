@@ -92,12 +92,12 @@
                                     </ul>
                                     <ul class="name-filter">
                                         <h2>Nome</h2>
-                                        <li>
+                                        <li class="filter">
                                             <input type="checkbox" name="a-z" id="a-z">
                                             <label for="a-z">A-Z<i class="icon"
                                                     data-lucide="arrow-down-a-z"></i></label>
                                         </li>
-                                        <li>
+                                        <li class="filter">
                                             <input type="checkbox" name="z-a" id="z-a">
                                             <label for="z-a">Z-A<i class="icon" data-lucide="arrow-up-z-a"></i></label>
                                         </li>
@@ -116,11 +116,8 @@
                                     <h3 class="col-6">Nome</h3>
                                     <h3 class="col-3">Genere</h3>
                                 </div>
-                                <div class="row body">
-                                    <p class="js-id col-2">Ciao</p>
-                                    <p class="js-nome col-6">Ciao</p>
-                                    <p class="js-genere col-2">Ciao</p>
-                                    <i class="icon" data-lucide="search js-cta-table col-1"></i>
+                                <div class="grid body js-table-body">
+
                                 </div>
                             </div>
                         </div>
@@ -134,10 +131,19 @@
 
 
 <template id="template-dialog-filters">
-    <li class="js-filter">
+    <li class="js-filter filter">
         <input class="js-filter-checkbox" type="checkbox" name="name">
         <label class="js-filter-label" for="name"></label>
     </li>
+</template>
+
+<template id="template-table-body">
+    <div class="row">
+        <p class="js-id col-2"></p>
+        <p class="js-nome col-6"></p>
+        <p class="js-genere col-3"></p>
+        <button class="btn-icon col-1"><i class="icon js-cta-table" data-lucide="package-open"></i></button>
+    </div>
 </template>
 
 <script type="module" src="../js/main.js">
