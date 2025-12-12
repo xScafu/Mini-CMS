@@ -64,6 +64,51 @@
       "quantita": 1000,
       "costo": 30,
       "dataAcquisto": "2025-11-25"
+    },
+    {
+      "id": 8,
+      "tipo": "Prodotto Digitale",
+      "nome": "Videogame",
+      "prezzo": 80,
+      "quantita": 1000,
+      "costo": 30,
+      "dataAcquisto": "2025-11-25"
+    },
+    {
+      "id": 9,
+      "tipo": "Elettrodomestico",
+      "nome": "Scopa elettrica",
+      "prezzo": 80,
+      "quantita": 1000,
+      "costo": 30,
+      "dataAcquisto": "2025-11-25"
+    },
+    {
+      "id": 10,
+      "tipo": "Elettrodomestico",
+      "nome": "Lavatrice",
+      "prezzo": 80,
+      "quantita": 1000,
+      "costo": 30,
+      "dataAcquisto": "2025-11-25"
+    },
+    {
+      "id": 11,
+      "tipo": "Giardinaggio",
+      "nome": "Decesplugliatore",
+      "prezzo": 80,
+      "quantita": 1000,
+      "costo": 30,
+      "dataAcquisto": "2025-11-25"
+    },
+    {
+      "id": 12,
+      "tipo": "Giardinaggio",
+      "nome": "Tosaerba",
+      "prezzo": 80,
+      "quantita": 1000,
+      "costo": 30,
+      "dataAcquisto": "2025-11-25"
     }
   ],
   "cards": [

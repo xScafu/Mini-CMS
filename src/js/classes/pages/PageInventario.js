@@ -4,9 +4,8 @@ import { LoadingSpinner } from "../components/LoadingSpinner";
 export class PageInventario {
   constructor() {
     this.spinner = new LoadingSpinner();
-    this.inventario = [];
+    this.invetario = [];
     this.filterArray = [];
-    this.filteredData = [];
   }
 
   init() {
@@ -18,9 +17,10 @@ export class PageInventario {
     fetch("http://localhost:3000/prodotti")
       .then((res) => res.json())
       .then((data) => {
+        this.invetario = data;
         this.populateDialogFilters(data);
         this.populateInventario(data);
-        this.typeFilter(data);
+        this.setFilterArray();
       });
     this.spinner.spinnerIsActive(false);
   }
@@ -53,7 +53,7 @@ export class PageInventario {
     }
   }
 
-  typeFilter(data) {
+  setFilterArray() {
     const filters = document.querySelectorAll(".js-filter-checkbox");
     let filterArray = this.filterArray;
 
@@ -74,21 +74,31 @@ export class PageInventario {
         } else {
           filterArray.push(filterId);
         }
-        this.dataFilter(data);
-        console.log(filterArray);
+
+        this.applyFilters();
       });
     }
   }
 
-  dataFilter(data) {
-    console.log("data");
-    let filterArray = this.filterArray;
-    let filteredData = this.filteredData;
+  applyFilters() {
+    let filteredData;
+
+    if (this.filterArray.length === 0) {
+      filteredData = this.invetario;
+    } else {
+      filteredData = this.invetario.filter((item) =>
+        this.filterArray.includes(item.tipo.toLowerCase())
+      );
+    }
+    this.populateInventario(filteredData);
   }
 
   populateInventario(data) {
     const template = document.querySelector("#template-table-body");
+
     const wrapper = document.querySelector(".js-table-body");
+    wrapper.innerHTML = "";
+
     for (let i = 0; i <= data.length - 1; i++) {
       const clone = template.content.cloneNode(true);
       clone.querySelector(".js-id").innerHTML = data[i].id;
