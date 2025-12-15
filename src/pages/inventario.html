@@ -31,25 +31,25 @@
                                         data-lucide="square-chart-gantt"></i>Dashboard</button></a>
                         </li>
                         <li>
-                            <a href="src\pages\inventario.html"><button class="btn" type="button"><i
+                            <a class="js-navigation-link" href="inventario.html"><button class="btn" type="button"><i
                                         data-lucide="list"></i>Inventario</button></a>
                         </li>
                         <li>
-                            <a href="src\pages\negozio.html"><button class="btn" type="button"><i
+                            <a class="js-navigation-link" href="negozio.html"><button class="btn" type="button"><i
                                         data-lucide="shopping-cart"></i>Negozio</button></a>
                         </li>
                         <li>
-                            <a href="src\pages\bilancio.html"><button class="btn" type="button"><i
+                            <a class="js-navigation-link" href="bilancio.html"><button class="btn" type="button"><i
                                         data-lucide="scale"></i>Bilancio</button></a>
                         </li>
                     </ul>
                     <ul class="menu-settings">
                         <li>
-                            <a href="src\pages\impostazioni.html"><button class="btn" type="button"><i
+                            <a class="js-navigation-link" href="impostazioni.html"><button class="btn" type="button"><i
                                         data-lucide="settings"></i>Impostazioni</button></a>
                         </li>
                         <li>
-                            <a href="src\pages\account.html"><button class="btn" type="button"><i
+                            <a class="js-navigation-link" href="account.html"><button class="btn" type="button"><i
                                         data-lucide="square-user-round"></i>Account</button></a>
                         </li>
                     </ul>
@@ -93,15 +93,22 @@
                                     <ul class="name-filter">
                                         <h2>Nome</h2>
                                         <li class="filter">
-                                            <input type="checkbox" name="a-z" id="a-z">
+                                            <input class="js-alphabetical-desc" type="checkbox" name="a-z" id="a-z">
                                             <label for="a-z">A-Z<i class="icon"
                                                     data-lucide="arrow-down-a-z"></i></label>
                                         </li>
                                         <li class="filter">
-                                            <input type="checkbox" name="z-a" id="z-a">
+                                            <input class="js-alphabetical-asc" type="checkbox" name="z-a" id="z-a">
                                             <label for="z-a">Z-A<i class="icon" data-lucide="arrow-up-z-a"></i></label>
                                         </li>
                                     </ul>
+                                    <div class="search">
+                                        <input type="search" name="search" class="js-search-filter search-input"
+                                            placeholder="Cerca per nome">
+                                        <button type="button" class="js-search-filter-btn btn">
+                                            <i data-lucide="search"></i>
+                                        </button>
+                                    </div>
                                 </dialog>
                                 <button type="button" popovertarget="openFilters" class="filters">
                                     <p>Filtri</p>

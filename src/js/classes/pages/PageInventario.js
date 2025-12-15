@@ -5,7 +5,7 @@ export class PageInventario {
   constructor() {
     this.spinner = new LoadingSpinner();
     this.invetario = [];
-    this.filterArray = [];
+    this.sortProductsArray = [];
   }
 
   init() {
@@ -20,7 +20,9 @@ export class PageInventario {
         this.invetario = data;
         this.populateDialogFilters(data);
         this.populateInventario(data);
-        this.setFilterArray();
+        this.sortType();
+        this.sortName();
+        this.searchFilter();
       });
     this.spinner.spinnerIsActive(false);
   }
@@ -34,6 +36,8 @@ export class PageInventario {
       dataArray.push(data[i].tipo);
     }
 
+    //Aggiunge a dataArrayFiltered la prima "occorrenza" degli elementi ciclati con filter()
+    //Alternativa per array di grandi dimensioni: Set
     let dataArrayFiltered = dataArray.filter(
       (element, index) => dataArray.indexOf(element) === index
     );
@@ -53,9 +57,9 @@ export class PageInventario {
     }
   }
 
-  setFilterArray() {
+  sortType() {
     const filters = document.querySelectorAll(".js-filter-checkbox");
-    let filterArray = this.filterArray;
+    let filterArray = this.sortProductsArray;
 
     for (let i = 0; i <= filters.length - 1; i++) {
       let filter = filters[i];
@@ -80,14 +84,82 @@ export class PageInventario {
     }
   }
 
+  sortName() {
+    const filterDescendance = document.querySelector(".js-alphabetical-desc");
+    const filterAscendance = document.querySelector(".js-alphabetical-asc");
+    let productsArray = [];
+    let productsArraySorted = [];
+
+    if (this.sortProductsArray.length === 0) {
+      productsArray = this.invetario;
+    } else {
+      productsArray = this.sortProductsArray;
+    }
+
+    filterDescendance.addEventListener("change", () => {
+      if (filterDescendance.checked) {
+        filterAscendance.checked = false;
+        productsArraySorted = productsArray.sort(
+          (o1, o2) => o1.nome.localeCompare(o2.nome) //Metodo di string che restituisce un valore numerico in base se questa stringa viene prima, dopo o uguale alla stringa passata in argomento.
+        );
+        productsArray = productsArraySorted;
+        this.applyFilters();
+      } else {
+        productsArraySorted = productsArray.sort((o1, o2) => o1.id - o2.id);
+        productsArray = productsArraySorted;
+        this.applyFilters();
+      }
+    });
+    filterAscendance.addEventListener("change", () => {
+      if (filterAscendance.checked) {
+        filterDescendance.checked = false;
+        productsArraySorted = productsArray.sort((o1, o2) =>
+          o2.nome.localeCompare(o1.nome)
+        );
+        productsArray = productsArraySorted;
+        this.applyFilters();
+      } else {
+        productsArraySorted = productsArray.sort((o1, o2) => o1.id - o2.id);
+        productsArray = productsArraySorted;
+        this.applyFilters();
+      }
+    });
+  }
+
+  searchFilter() {
+    const searchInput = document.querySelector(".js-search-filter");
+    const searchSubmit = document.querySelector(".js-search-filter-btn");
+
+    let productsArray = [];
+
+    if (this.sortProductsArray.length === 0) {
+      productsArray = this.invetario;
+    } else {
+      productsArray = this.sortProductsArray;
+    }
+
+    searchSubmit.addEventListener("click", () => {
+      let searchValue = searchInput.value;
+
+      productsArray.filter((element) => {
+        if (element.nome.toLowerCase().includes(searchValue.toLowerCase())) {
+          let productsArraySorted = [];
+          productsArraySorted.push(element);
+          console.log(productsArraySorted);
+        }
+        this.applyFilters();
+      });
+    });
+  }
+
   applyFilters() {
     let filteredData;
 
-    if (this.filterArray.length === 0) {
+    if (this.sortProductsArray.length === 0) {
       filteredData = this.invetario;
     } else {
       filteredData = this.invetario.filter((item) =>
-        this.filterArray.includes(item.tipo.toLowerCase())
+        this.sortProductsArray.includes(item.tipo.toLowerCase())
       );
     }
     this.populateInventario(filteredData);
