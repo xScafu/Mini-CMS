@@ -58,11 +58,11 @@ export class PageInventario {
   }
 
   sortType() {
-    const filters = document.querySelectorAll(".js-filter-checkbox");
-    let filterArray = this.sortProductsArray;
+    const filtersCheckbox = document.querySelectorAll(".js-filter-checkbox");
 
-    for (let i = 0; i <= filters.length - 1; i++) {
-      let filter = filters[i];
+    let filterArray = [];
+    for (let i = 0; i <= filtersCheckbox.length - 1; i++) {
+      let filter = filtersCheckbox[i];
       filter.addEventListener("change", (input) => {
         let filterId = input.target.getAttribute("id");
 
@@ -76,17 +76,42 @@ export class PageInventario {
             }
           }
         } else {
-          filterArray.push(filterId);
+          filterArray.push(filterId.toLowerCase());
         }
-
-        this.applyFilters();
+        this.setSortType(filterArray);
       });
     }
+  }
+
+  setSortType(filterArray) {
+    console.log(filterArray);
+
+    let filteredProducts = [];
+
+    for (let i = 0; i <= filterArray.length - 1; i++) {
+      for (let x = 0; x <= this.invetario.length - 1; x++) {
+        if (filterArray[i] === this.invetario[x].tipo.toLowerCase()) {
+          filteredProducts.push(this.invetario[x]);
+        }
+      }
+    }
+    this.sortProductsArray = filteredProducts;
+    this.applyFilters();
   }
 
   sortName() {
     const filterDescendance = document.querySelector(".js-alphabetical-desc");
     const filterAscendance = document.querySelector(".js-alphabetical-asc");
+
+    filterDescendance.addEventListener("change", () =>
+      this.setDescendance(filterDescendance, filterAscendance)
+    );
+    filterAscendance.addEventListener("change", () =>
+      this.setAscendance(filterAscendance, filterDescendance)
+    );
+  }
+
+  setDescendance(filterDescendance, filterAscendance) {
     let productsArray = [];
     let productsArraySorted = [];
 
@@ -95,72 +120,82 @@ export class PageInventario {
     } else {
       productsArray = this.sortProductsArray;
     }
+    if (filterDescendance.checked) {
+      filterAscendance.checked = false;
+      productsArraySorted = productsArray.sort(
+        (o1, o2) => o1.nome.localeCompare(o2.nome) //Metodo di string che restituisce un valore numerico in base se questa stringa viene prima, dopo o uguale alla stringa passata in argomento.
+      );
 
-    filterDescendance.addEventListener("change", () => {
-      if (filterDescendance.checked) {
-        filterAscendance.checked = false;
-        productsArraySorted = productsArray.sort(
-          (o1, o2) => o1.nome.localeCompare(o2.nome) //Metodo di string che restituisce un valore numerico in base se questa stringa viene prima, dopo o uguale alla stringa passata in argomento.
-        );
-        productsArray = productsArraySorted;
-        this.applyFilters();
-      } else {
-        productsArraySorted = productsArray.sort((o1, o2) => o1.id - o2.id);
-        productsArray = productsArraySorted;
-        this.applyFilters();
-      }
-    });
-    filterAscendance.addEventListener("change", () => {
-      if (filterAscendance.checked) {
-        filterDescendance.checked = false;
-        productsArraySorted = productsArray.sort((o1, o2) =>
-          o2.nome.localeCompare(o1.nome)
-        );
-        productsArray = productsArraySorted;
-        this.applyFilters();
-      } else {
-        productsArraySorted = productsArray.sort((o1, o2) => o1.id - o2.id);
-        productsArray = productsArraySorted;
-        this.applyFilters();
-      }
-    });
+      this.applyFilters();
+    } else {
+      productsArraySorted = productsArray.sort((o1, o2) => o1.id - o2.id);
+      this.applyFilters();
+    }
   }
 
-  searchFilter() {
-    const searchInput = document.querySelector(".js-search-filter");
-    const searchSubmit = document.querySelector(".js-search-filter-btn");
-
+  setAscendance(filterAscendance, filterDescendance) {
     let productsArray = [];
+    let productsArraySorted = [];
 
     if (this.sortProductsArray.length === 0) {
       productsArray = this.invetario;
     } else {
       productsArray = this.sortProductsArray;
     }
+    if (filterAscendance.checked) {
+      filterDescendance.checked = false;
+      productsArraySorted = productsArray.sort((o1, o2) =>
+        o2.nome.localeCompare(o1.nome)
+      );
 
-    searchSubmit.addEventListener("click", () => {
-      let searchValue = searchInput.value;
+      this.applyFilters();
+    } else {
+      productsArraySorted = productsArray.sort((o1, o2) => o1.id - o2.id);
+      this.applyFilters();
+    }
+  }
 
-      productsArray.filter((element) => {
-        if (element.nome.toLowerCase().includes(searchValue.toLowerCase())) {
-          let productsArraySorted = [];
-          productsArraySorted.push(element);
-          console.log(productsArraySorted);
-        }
-        this.applyFilters();
-      });
-    });
+  searchFilter() {
+    const searchInput = document.querySelector(".js-search-filter");
+    searchInput.addEventListener("change", () =>
+      this.setSearchFilter(searchInput)
+    );
+  }
+
+  setSearchFilter(searchInput) {
+    let searchInputValue = searchInput.value;
+    let productsArray = [];
+    let productsFilteredArray = [];
+
+    if (this.sortProductsArray.length > 0) {
+      productsArray = [...this.sortProductsArray];
+    } else {
+      productsArray = this.invetario;
+    }
+
+    console.log(searchInputValue);
+
+    for (let i = 0; i <= productsArray.length - 1; i++) {
+      if (
+        productsArray[i].nome
+          .toLowerCase()
+          .includes(searchInputValue.toLowerCase())
+      ) {
+        productsFilteredArray.push(productsArray[i]);
+        console.log(productsFilteredArray);
+      }
+    }
+    this.sortProductsArray = productsFilteredArray;
+    this.applyFilters();
   }
 
   applyFilters() {
-    let filteredData;
+    let filteredData = [];
 
     if (this.sortProductsArray.length === 0) {
       filteredData = this.invetario;
     } else {
-      filteredData = this.invetario.filter((item) =>
-        this.sortProductsArray.includes(item.tipo.toLowerCase())
-      );
+      filteredData = this.sortProductsArray;
     }
     this.populateInventario(filteredData);
   }

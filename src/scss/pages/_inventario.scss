@@ -31,8 +31,8 @@
 
   .filters-popover {
     position: absolute;
-    top: get-rem(8);
-    right: get-rem(-50);
+    top: get-rem(19);
+    right: get-rem(-53);
     position-area: left bottom;
     padding: get-rem(20);
     border: none;
@@ -61,6 +61,12 @@
     }
     .search {
       margin-top: get-rem(8);
+
+      svg {
+        position: absolute;
+        right: get-rem(6.4);
+        top: get-rem(8);
+      }
     }
 
     .name-filter {
