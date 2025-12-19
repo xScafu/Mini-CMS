@@ -13,6 +13,27 @@
         <div class="loader-spinner"></div>
     </dialog>
 
+    <dialog class="modal" popover="auto" id="openAddProduct">
+        <div class="modal-header">
+            <h1 class="js-modal-add-header-title title"></h1>
+        </div>
+        <div class="modal-body">
+            <div class="container js-modal-add-content">
+            </div>
+        </div>
+    </dialog>
+
+    <dialog class="modal" popover="auto" id="openDeleteProduct">
+        <div class="modal-header">
+            <h1 class="js-modal-remove-header-title title"></h1>
+        </div>
+        <div class="modal-body">
+            <div class="container js-modal-remove-content">
+            </div>
+        </div>
+    </dialog>
+
+
     <div class="app-container">
         <sidebar class="sidebar">
             <nav>
@@ -110,18 +131,26 @@
 
                                     </div>
                                 </dialog>
-                                <button type="button" popovertarget="openFilters" class="filters">
-                                    <p>Filtri</p>
-                                    <i data-lucide="list-filter" class="icon small"></i>
-                                </button>
+                                <div class="table-ctas">
+                                    <button type="button" popovertarget="openAddProduct" class="cta js-add-product">
+                                        <p>Aggiungi</p>
+                                        <i data-lucide="circle-plus" class="icon small"></i>
+                                    </button>
+
+                                    <button type="button" popovertarget="openFilters" class="cta">
+                                        <p>Filtri</p>
+                                        <i data-lucide="list-filter" class="icon small"></i>
+                                    </button>
+                                </div>
                             </div>
                         </div>
                         <div class="container">
                             <div class="table grid">
                                 <div class="row head">
-                                    <h3 class="col-2">ID</h3>
-                                    <h3 class="col-6">Nome</h3>
+                                    <h3 class="col-2">Numero identificativo</h3>
+                                    <h3 class="col-4">Nome</h3>
                                     <h3 class="col-3">Genere</h3>
+                                    <h3 class="col-3 product-detail-label">Gestisci prodotto</h3>
                                 </div>
                                 <div class="grid body js-table-body">
 
@@ -144,12 +173,66 @@
     </li>
 </template>
 
+<template id="template-modal-form">
+    <form class="grid js-form">
+        <p class="js-form-description form-description"></p>
+        <div class="row">
+            <div class="input-wrapper col-6">
+                <label class="js-labels js-nomeProdotto-label" for="nomeProdotto"></label>
+                <input class="js-input js-nomeProdotto" type="text" name="nome" id="nomeProdotto">
+            </div>
+            <div class="input-wrapper col-6">
+                <label class="js-labels js-tipoProdotto-label" for="tipoProdotto"></label>
+                <input class="js-input js-tipoProdotto" type="text" name="tipo" id="tipoProdotto">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-wrapper col-6">
+                <label class="js-labels js-costoProdotto-label" for="costoProdotto"></label>
+                <input class="js-input js-costoProdotto" type="number" name="costo" id="costoProdotto">
+            </div>
+            <div class="input-wrapper col-6">
+                <label class="js-labels js-prezzoProdotto-label" for="prezzoProdotto"></label>
+                <input class="js-input js-prezzoProdotto" type="number" name="prezzo" id="prezzoProdotto">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-wrapper col-6">
+                <label class="js-labels js-quantitaProdotto-label" for="quantitaProdotto"></label>
+                <input class="js-input js-quantitaProdotto" type="number" name="quantita" id="quantitaProdotto">
+            </div>
+            <div class="input-wrapper col-6">
+                <label class="js-labels js-dataAcquistoProdotto-label" for="dataAcquistoProdotto"></label>
+                <input class="js-input js-dataAcquistoProdotto" type="date" name="dataAcquisto"
+                    id="dataAcquistoProdotto">
+            </div>
+            <div class="js-dataSpeciale input-wrapper col-6">
+                <label class="js-labels js-dataSpecialeProdotto-label" for="dataSpecialeProdotto"></label>
+                <input class="js-input js-dataSpecialeProdotto" type="date" name="dataSpeciale"
+                    id="dataSpecialeProdotto">
+            </div>
+        </div>
+        <div class="row btns-container js-btns-container">
+            <button type="submit" class="btn js-btn-accept">Accetta</button>
+            <button type="button" class="btn js-btn-return">Annulla</button>
+        </div>
+
+
+    </form>
+</template>
+
 <template id="template-table-body">
-    <div class="row">
-        <p class="js-id col-2"></p>
-        <p class="js-nome col-6"></p>
+    <div class="js-product row">
+        <p class="js-index col-2"></p>
+        <p class="js-nome col-4"></p>
         <p class="js-genere col-3"></p>
-        <button class="btn-icon col-1"><i class="icon js-cta-table" data-lucide="package-open"></i></button>
+        <div class="js-table-btns table-btns col-3">
+            <button class="btn-icon js-detail-product-btn"><i class="icon" data-lucide="package-open"></i></button>
+            <button class="btn-icon js-remove-product-btn" popovertarget="openDeleteProduct"><i class="icon"
+                    data-lucide="circle-x"></i></button>
+        </div>
     </div>
 </template>
 

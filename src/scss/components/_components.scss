@@ -7,6 +7,7 @@
 @use "./search";
 @use "./loader";
 @use "./button";
+@use "./dialog";
 
 .app-container {
   display: flex;
@@ -22,7 +23,7 @@
   height: get-rem(24);
 
   &.small {
-    width: get-rem(12);
-    height: get-rem(12);
+    width: get-rem(14);
+    height: get-rem(14);
   }
 }

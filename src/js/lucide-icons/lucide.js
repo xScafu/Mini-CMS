@@ -18,6 +18,8 @@ import {
   ArrowDownAZ,
   ArrowUpZA,
   PackageOpen,
+  CircleX,
+  CirclePlus,
 } from "lucide";
 
 createIcons({
@@ -39,6 +41,8 @@ createIcons({
     ArrowDownAZ,
     ArrowUpZA,
     PackageOpen,
+    CircleX,
+    CirclePlus,
   },
   nameAttr: "data-lucide",
   inTemplates: true,
