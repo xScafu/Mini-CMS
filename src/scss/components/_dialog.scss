@@ -92,4 +92,23 @@
       }
     }
   }
+
+  &.remove-modal {
+    .modal-body {
+      .container {
+        form {
+          .input-wrapper {
+            label {
+              cursor: auto;
+            }
+            input {
+              box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+              outline: none;
+              background-color: white;
+            }
+          }
+        }
+      }
+    }
+  }
 }

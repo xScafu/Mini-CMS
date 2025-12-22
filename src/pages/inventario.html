@@ -13,7 +13,7 @@
         <div class="loader-spinner"></div>
     </dialog>
 
-    <dialog class="modal" popover="auto" id="openAddProduct">
+    <dialog class="modal js-add-modal" popover="auto" id="openAddProduct">
         <div class="modal-header">
             <h1 class="js-modal-add-header-title title"></h1>
         </div>
@@ -23,7 +23,7 @@
         </div>
     </dialog>
 
-    <dialog class="modal" popover="auto" id="openDeleteProduct">
+    <dialog class="modal remove-modal js-remove-modal" popover="auto" id="openDeleteProduct">
         <div class="modal-header">
             <h1 class="js-modal-remove-header-title title"></h1>
         </div>
@@ -147,9 +147,8 @@
                         <div class="container">
                             <div class="table grid">
                                 <div class="row head">
-                                    <h3 class="col-2">Numero identificativo</h3>
-                                    <h3 class="col-4">Nome</h3>
-                                    <h3 class="col-3">Genere</h3>
+                                    <h3 class="col-5">Nome</h3>
+                                    <h3 class="col-4">Genere</h3>
                                     <h3 class="col-3 product-detail-label">Gestisci prodotto</h3>
                                 </div>
                                 <div class="grid body js-table-body">
@@ -225,9 +224,8 @@
 
 <template id="template-table-body">
     <div class="js-product row">
-        <p class="js-index col-2"></p>
-        <p class="js-nome col-4"></p>
-        <p class="js-genere col-3"></p>
+        <p class="js-nome col-5"></p>
+        <p class="js-genere col-4"></p>
         <div class="js-table-btns table-btns col-3">
             <button class="btn-icon js-detail-product-btn"><i class="icon" data-lucide="package-open"></i></button>
             <button class="btn-icon js-remove-product-btn" popovertarget="openDeleteProduct"><i class="icon"

@@ -130,7 +130,7 @@ export class PageInventario {
 
       this.applyFilters();
     } else {
-      productsArraySorted = productsArray.sort((o1, o2) => o1.index - o2.index);
+      productsArraySorted = productsArray.sort((o1, o2) => o1.id - o2.id);
       this.applyFilters();
     }
   }
@@ -152,7 +152,7 @@ export class PageInventario {
 
       this.applyFilters();
     } else {
-      productsArraySorted = productsArray.sort((o1, o2) => o1.index - o2.index);
+      productsArraySorted = productsArray.sort((o1, o2) => o1.id - o2.id);
       this.applyFilters();
     }
   }
@@ -242,8 +242,11 @@ export class PageInventario {
 
   setAddProduct() {
     const acceptBtn = document.querySelector(".js-btn-accept");
+    const returnBtn = document.querySelector(".js-btn-return");
+    const addModal = document.querySelector(".js-add-modal");
 
     acceptBtn.addEventListener("click", (event) => this.checkInputs(event));
+    returnBtn.addEventListener("click", () => addModal.togglePopover());
   }
 
   checkInputs(event) {
@@ -366,11 +369,18 @@ export class PageInventario {
 
     wrapper.appendChild(clone);
 
+    this.setRemoveProduct(getProduct);
+  }
+
+  setRemoveProduct(getProduct) {
     const acceptBtn = document.querySelector(".js-btn-accept");
+    const returnBtn = document.querySelector(".js-btn-return");
+    const removeModal = document.querySelector(".js-remove-modal");
 
     acceptBtn.addEventListener("click", () =>
       this.handleRemoveProduct(getProduct)
     );
+    returnBtn.addEventListener("click", () => removeModal.togglePopover());
   }
 
   handleRemoveProduct(getProduct) {
@@ -392,7 +402,6 @@ export class PageInventario {
     for (let i = 0; i <= data.length - 1; i++) {
       const clone = template.content.cloneNode(true);
       clone.querySelector(".js-product").setAttribute("data-id", data[i].id);
-      clone.querySelector(".js-index").innerHTML = data[i].index;
       clone.querySelector(".js-nome").innerHTML = data[i].nome;
       clone.querySelector(".js-genere").innerHTML = data[i].tipo;
       clone.querySelector(".js-table-btns");
